@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'reservar-list'  %}">MENU</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          {% if user.is_authenticated %}
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reservar <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href=" {% url 'reservar-list'  %} ">Ver</a></li>
+            {% if perms.reservaciones.add_reservas %}
+              <li><a href=" {% url 'reservar-create'  %} ">Solicitar</a></li>
+            {% endif %}
+          </ul>
+          {% endif %}
+        </li>
+        <li class="dropdown">
+          {% if user.is_authenticated %}
+            {% if perms.sala.add_sala%}
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administración <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href=" {% url 'sala-list'  %} ">Salas</a></li>
+                <li><a href=" {% url 'insumo-list'  %} ">Insumos</a></li>
+                <li><a href=" {% url 'horario-list'  %} ">Horarios</a></li>
+                <li><a href=" {% url 'reservar-estatus-list'  %} ">Reservas</a></li>
+              </ul>
+            {% endif %}
+          {% endif %}
+        </li>
+      </ul>
+     
+            <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          {% if user.is_authenticated %}
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.get_username}}<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'logout' %}"></span>Logout</a></li>
+            </ul>
+          {% else %}
+           <li><a href=" {% url 'login'  %} ">Login</a></li>
+          {% endif %}       
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

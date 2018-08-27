@@ -1,0 +1,52 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row" >
+	<div class="col-md-offset-2 col-md-8" style="top:50px">
+		<div class="panel panel-default">
+				
+			<div class="panel-heading">
+				<h5>
+					<p class="text-center">Detalle de la Solicitud</p> 
+				</h5>
+			</div>
+			<div class="panel-body">
+				{% if object %}
+					<p>Nombre del evento: <strong>{{ object.nombre }}</strong> </p>
+					<p>Nombre de la sala: <strong>{{ object.sala }}</strong> </p>
+					<p>Cantidad de Personas: <strong>{{ object.cantidad }}</strong> </p>
+					<p>Fecha: <strong>{{ object.fecha_solicitud }}</strong> </p>
+					<p>Hora de Inicio: <strong>{{ object.hora_inicio }}</strong> </p>
+					<p>Hora Fin: <strong>{{ object.hora_fin }}</strong> </p>
+					<p>Estatus: <strong>				
+						{% if object.estatus == 1 %}
+							<td>Solicitada</td>
+						{% endif %}
+						{% if object.estatus == 2 %}
+							<td>Rechazada</td>
+						{% endif %}
+						{% if object.estatus == 3 %}
+							<td>Aceptada</td>
+						{% endif %}</strong> </p>
+					<ul>
+						{% for insumo in object.insumos.all %}
+							<li>
+							<strong>{{ insumo.descripcion }} </strong>
+							</li>
+						{% endfor %}
+					</ul>
+				{% else %}
+					<p>No hay registro con esa solicitud!</p>
+				{% endif %}
+				<a  class="btn btn-primary btn-xs" href=" {% url 'reservar-estatus-list'  %} ">Volver</a> 
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

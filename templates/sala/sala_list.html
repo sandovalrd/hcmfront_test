@@ -1,0 +1,45 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block content %}
+
+	<table class="table table-striped table-hover">
+		{% if object_list %}
+		<thead>
+			<td>Sala</td>
+			<td>Ubicacion</td>
+			<td>Capacidad</td>
+			{% if perms.sala.add_sala%}
+				<td>Acciones</td>
+			{% endif %}
+		</thead>
+		<tbody>
+			{% for sala in object_list %}
+			<tr>
+				<td>{{ sala.nombre }}</td>
+				<td>{{ sala.ubicacion }}</td>
+				<td>{{ sala.capacidad }}</td>
+				{% if perms.sala.add_sala%}
+					<td>
+						<a  class="btn btn-primary btn-xs" href=" {% url 'sala-detail' sala.id %} ">Detalle</a> 
+						<a  class="btn btn-primary btn-xs" href=" {% url 'sala-update' sala.id %} ">Editar</a> 
+						<a  class="btn btn-primary btn-xs" href=" {% url 'sala-delete' sala.id %} ">Eliminar</a> 
+					</td>
+				{% endif %}
+			</tr>
+			{% endfor %}
+			{% else %}
+				<h3>No hay salas disponibles, debe registrar una nueva!</h3>
+			{% endif %}
+		</tbody>
+	</table>
+	
+	<div class="row">
+		<div class="col-md-offset-0	col-md-12"">
+			<a  class="btn btn-primary btn-xs" href=" {% url 'sala-create' %} ">Nueva</a> 
+		</div>
+	</div>
+{% endblock %}

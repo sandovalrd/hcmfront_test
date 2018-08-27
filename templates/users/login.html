@@ -1,0 +1,53 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+
+<div class="row" >
+	<div class="col-md-offset-2 col-md-8" style="top:50px">
+		<div class="panel panel-default">
+				
+			<div class="panel-heading">
+				<h4>
+					Reserva de Salas
+				</h4>
+			</div>
+			<div class="panel-body">
+				<form action="" method="post">{% csrf_token %}
+					<div class="row">
+						<div class="form-group col-md-2">
+							{{ form.username.errors }}
+							<label>Usuario: </label>
+						</div>
+						<div class="form-group col-md-4">
+							{{ form.username }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-2">
+							{{ form.password.errors }}
+							<label>Contraseña: </label>
+						</div>
+						<div class="form-group col-md-4">
+							{{ form.password }}
+						</div>
+					</div>
+					<div>
+						{%  if  form.errors  %} 
+							<p> Su nombre de usuario y la contraseña no coinciden. Por favor, inténtelo de nuevo. </ p> 
+						{%  endif  %}
+					</div>
+					<input class="btn btn-primary btn-xs" type="submit" value="Ingresar">
+					<a class="btn btn-primary btn-xs" href="{% url 'register' %}">Registrarse</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

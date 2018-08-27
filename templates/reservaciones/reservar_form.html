@@ -1,0 +1,56 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block content %}
+<div class="col-md-offset-3 col-md-6">
+	<form action="" method="post">{% csrf_token %}
+	<div class='form-group'>
+		{{ form.nombre.errors }}
+		<label for="id_name">{{ form.nombre.label }}</label>
+		{{ form.nombre }}
+	</div>
+	<div class='form-group'>
+		{{ form.sala.errors }}
+		<label for="id_name">{{ form.sala.label }}</label>
+		{{ form.sala }}
+	</div>
+	<div class='form-group'>
+		{{ form.cantidad.errors }}
+		<label for="id_name">{{ form.cantidad.label }}</label>
+		{{ form.cantidad }}
+	</div>
+	<div class='form-group'>
+		{{ form.fecha_solicitud.errors }}
+		<label for="id_name">{{ form.fecha_solicitud.label }}</label>
+		{{ form.fecha_solicitud }}
+	</div>
+	<div class='form-group'>
+		{{ form.hora_inicio.errors }}
+		<label for="id_name">{{ form.hora_inicio.label }}</label>
+		{{ form.hora_inicio }}
+	</div>
+	<div class='form-group'>
+		{{ form.hora_fin.errors }}
+		<label for="id_name">{{ form.hora_fin.label }}</label>
+		{{ form.hora_fin }}
+	</div>
+	<div class='form-group'>
+		{{ form.estatus.errors }}
+		<label for="id_name">{{ form.estatus.label }}</label>
+		{{ form.estatus }}
+	</div>
+	<div class='form-group'> 
+		{{ form.insumos.errors }}
+		<label for="id_name">{{ form.insumos.label }}</label>
+		{{ form.insumos }}
+	</div>
+
+	
+	<input class="btn btn-primary btn-xs" type="submit" value="Aceptar">
+	<a  class="btn btn-primary btn-xs" href=" {% url 'reservar-list'  %} ">Atras</a> 
+	</form>
+</div>
+{% endblock %}

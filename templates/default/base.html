@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">
+	<title>{% block title %} Document {% endblock %}</title>
+</head>
+<body>
+	<div class="container">
+
+		{% block navbar %}
+			{% include 'default/navbar.html' %}
+		{% endblock %}
+		
+
+		<div class="col-md-offset-1 col-md-10">
+
+			{% block content %}
+				<h4>Bloque Contenido</h4>
+			{% endblock %}
+
+			{% block footer %}
+				
+			{% endblock %}
+
+		</div>
+
+	</div>
+
+	<script src="{% static 'plugins/jquery/js/jquery-3.2.1.js' %}" ></script>
+	<script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}" ></script>
+	<script>
+		{% block javascript %}
+		
+		{% endblock %}					
+	</script>	
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block content %}
+
+	<table class="table table-striped table-hover">
+		{% if object_list %}
+		<thead>
+			<td>Nombre</td>
+			<td>Sala</td>
+			<td>Fecha</td>
+			<td>Hora Inicio</td>
+			<td>Hora Fin</td>
+			<td>Estatus</td>
+			<td>Acciones</td>
+		</thead>
+		<tbody>
+			{% for reserva in object_list %}
+			<tr>
+				<td>{{ reserva.nombre }}</td>
+				<td>{{ reserva.sala }}</td>
+				<td>{{ reserva.fecha_solicitud }}</td>
+				<td>{{ reserva.hora_inicio }}</td>
+				<td>{{ reserva.hora_fin }}</td>
+				{% if reserva.estatus == 1 %}
+					<td>Solicitada</td>
+				{% endif %}
+				{% if reserva.estatus == 2 %}
+					<td>Rechazada</td>
+				{% endif %}
+				{% if reserva.estatus == 3 %}
+					<td>Aceptada</td>
+				{% endif %}
+					<td>
+						<a  class="btn btn-primary btn-xs" href=" {% url 'reservar-estatus-detail' reserva.id %} ">Detalle</a> 
+						<a  class="btn btn-primary btn-xs" href=" {% url 'reserva-estatus-update' reserva.id %} ">Cambiar Estatus</a> 
+					</td>
+			</tr>
+			{% endfor %}
+			{% else %}
+				<h3>No hay solicitudes disponibles!</h3>
+			{% endif %}
+		</tbody>
+	</table>
+	
+{% endblock %}
